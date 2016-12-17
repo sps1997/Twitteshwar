@@ -1,0 +1,55 @@
+<div class="container">
+        <div class="jumbotron">
+            <div class="row row-offcanvas row-offcanvas-right">
+                <div class="col-xs-4">
+                    Welcome {{ userProfile }}
+                </div>
+                <div class="col-xs-2">
+                    <img src="./a.jpg" />
+                </div>
+            </div>
+            <div class="row row-offcanvas row-offcanvas-right">
+                <div class="col-xs-2">
+                    Location
+                </div>
+                <div class="col-xs-2">
+                    Follower Count : 
+                </div>
+                <div class="col-xs-2">
+                    Following Count :
+                </div>
+            </div>
+        </div>
+</div>
+<div class="container">
+        <div class="jumbotron">
+            <div class="row row-offcanvas row-offcanvas-right">
+                <div class="col-xs-8">
+                    <textarea placeholder="What's in your mind?"  style="width:100%" rows="2" cols="300" 
+                    [(ngModel)]=tweetMessage (change)="validateLength()"></textarea>
+                  </div>
+                  <div class="col-xs-2">
+                        <a class="btn btn-lg btn-primary" href="../../components/#navbar"
+                         role="button" (click)='tweet()'> Tweet</a>
+                </div>
+                <div *ngIf="liked">
+                    <i class="glyphicon glyphicon-heart cursor"></i>
+                </div>
+                <div *ngIf="shared">
+                    <i class="glyphicon glyphicon-share cursor"></i>
+                </div>
+            </div>
+            <div class="row row-offcanvas row-offcanvas-right">
+                <div class="col-xs-10">
+                    No Of Characters Left : <b>{{ characterLeft }}</b>
+                </div>
+            </div>
+        </div>
+
+        <hr/>
+
+        <div *ngFor="let tweet of tweets">
+                    {{tweet.text}} on {{tweet.createdAt}} by  <img src="{{tweet.user.profileImageUrl}}"  alt="{{tweet.user.screenName}}"/>"
+                </div>
+        
+</div>

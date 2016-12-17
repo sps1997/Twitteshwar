@@ -1,5 +1,7 @@
 package com.sachinshah.api.service;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -20,8 +22,28 @@ public class EventService {
 	}
 
 	public List<Event> getEvents() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Event> events = new ArrayList<Event>();
+		
+		Event event = new Event();
+		event.setId(1000l);
+		event.setName("Test Event 1");
+		event.setDescription("aking bath cermeony at 1");
+		event.setDate(new Date());
+		event.setCreatedBy("Sachin Shah");
+		
+		events.add(event);
+		
+		event = new Event();
+		event.setId(1001l);
+		event.setName("Test Event 2");
+		event.setDescription("TEst event at mustafa later at 2 pm");
+		event.setDate(new Date());
+		event.setCreatedBy("Munish Gogna");
+		
+		events.add(event);
+		
+		
+		return events;
 	}
 
 	

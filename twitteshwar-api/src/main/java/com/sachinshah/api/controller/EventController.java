@@ -10,14 +10,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.sachinshah.api.model.Event;
 import com.sachinshah.api.service.EventService;
 
 @RestController
 @RequestMapping(value = "/api", produces = "application/json")
 public class EventController {
+
+	private Gson gson = new GsonBuilder().create();
 
 	@Autowired
 	private EventService eventService;
@@ -33,12 +38,12 @@ public class EventController {
 	}
 
 	@RequestMapping(value = "/event/getAll", method = RequestMethod.GET)
-	public ResponseEntity<String> getAllEvents() {
+	public ResponseEntity<String> getAllEvents(@RequestParam(name = "callback") String callback) {
 		System.out.println("Get Events : ");
 
 		List<Event> events = eventService.getEvents();
 
-		return ResponseEntity.ok("{\"result\":\"OK\"}");
+		return ResponseEntity.ok(String.format("%s (%s);", callback, gson.toJson(events)));
 
 	}
 
