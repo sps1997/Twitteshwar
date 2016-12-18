@@ -27,16 +27,12 @@ export class TwitterService {
   
     }
 
-getTweets (){
+  getTweets (){
    return  this._jsonp.get("/api/tweets?callback=JSONP_CALLBACK").map(res => res.json());; 
   }
 
   getProfile (){
    return  this._jsonp.get("/api/profile?callback=JSONP_CALLBACK").map(res => res.json());; 
   }
-
-  
-  
-
 
 }
